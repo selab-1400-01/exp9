@@ -1,10 +1,7 @@
 package parser;
 
-import Log.Log;
 import scanner.token.Token;
-import scanner.type.Type;
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.ArrayList;
 
 /**
@@ -23,16 +20,16 @@ public class Rule {
         } else {
             semanticAction = 0;
         }
-        String[] splited = stringRule.split("->");
-            LHS = NonTerminal.valueOf(splited[0]);
+        String[] split = stringRule.split("->");
+            LHS = NonTerminal.valueOf(split[0]);
         RHS = new ArrayList<GrammarSymbol>();
-        if (splited.length > 1) {
-            String[] RHSs = splited[1].split(" ");
+        if (split.length > 1) {
+            String[] RHSs = split[1].split(" ");
             for (String s : RHSs){
                 try {
                     RHS.add(new GrammarSymbol(NonTerminal.valueOf(s)));
                 } catch (Exception e) {
-                        RHS.add(new GrammarSymbol(new Token(Token.getTyepFormString(s), s)));
+                        RHS.add(new GrammarSymbol(new Token(Token.getTypeFormString(s), s)));
                 }
             }
         }
