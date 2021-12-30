@@ -52,10 +52,12 @@ public class SymbolTable {
     }
 
     public void addMethodLocalVariable(String className, String methodName, String localVariableName) {
-            if (klasses.get(className).Methods.get(methodName).localVariable.containsKey(localVariableName)) {
-                ErrorHandler.printError("This variable already defined");
-            }
-            klasses.get(className).Methods.get(methodName).localVariable.put(localVariableName, new Symbol(lastType, mem.getDateAddress()));
+        if (klasses.get(className).Methods.get(methodName).localVariable.containsKey(localVariableName)) {
+            ErrorHandler.printError("This variable already defined");
+        }
+        klasses.get(className)
+                .Methods.get(methodName).localVariable
+                .put(localVariableName, new Symbol(lastType, mem.getDateAddress()));
     }
 
     public void setSuperClass(String superClass, String className) {
@@ -66,8 +68,8 @@ public class SymbolTable {
         return keyWords.get(keywordName);
     }
 
-    public Symbol get(String fieldName,String className) {
-            return klasses.get(className).getField(fieldName);
+    public Symbol get(String fieldName, String className) {
+        return klasses.get(className).getField(fieldName);
     }
 
     public Symbol get(String className, String methodName, String variable) {
@@ -81,8 +83,8 @@ public class SymbolTable {
         return klasses.get(className).Methods.get(methodName).getNextParameter();
     }
 
-    public void startCall(String className,String methodName) {
-            klasses.get(className).Methods.get(methodName).reset();
+    public void startCall(String className, String methodName) {
+        klasses.get(className).Methods.get(methodName).reset();
     }
 
     public int getMethodCallerAddress(String className, String methodName) {
@@ -94,7 +96,7 @@ public class SymbolTable {
     }
 
     public SymbolType getMethodReturnType(String className, String methodName) {
-            return klasses.get(className).Methods.get(methodName).returnType;
+        return klasses.get(className).Methods.get(methodName).returnType;
     }
 
     public int getMethodAddress(String className, String methodName) {
@@ -116,10 +118,9 @@ public class SymbolTable {
             if (Fields.containsKey(fieldName)) {
                 return Fields.get(fieldName);
             }
+
             return superClass.getField(fieldName);
-
         }
-
     }
 
     class Method {
@@ -163,5 +164,4 @@ public class SymbolTable {
             return parameters.get(orderedParameters.get(index++));
         }
     }
-
 }

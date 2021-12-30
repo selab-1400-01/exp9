@@ -8,9 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LexicalAnalyzer {
-
     private Matcher matcher;
-
 
     public LexicalAnalyzer(java.util.Scanner sc) {
         StringBuilder input = new StringBuilder();
@@ -18,14 +16,15 @@ public class LexicalAnalyzer {
             input.append(sc.nextLine());
         }
         StringBuilder tokenPattern = new StringBuilder();
-        for (Type tokenType : Type.values())
+        for (Type tokenType : Type.values()) {
             tokenPattern.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
+        }
+
         Pattern expression = Pattern.compile(tokenPattern.substring(1));
         matcher = expression.matcher(input.toString());
     }
 
     public Token getNextToken() {
-
         while (matcher.find()) {
             for (Type t : Type.values()) {
 
@@ -34,7 +33,7 @@ public class LexicalAnalyzer {
                         break;
 
                     }
-                    if(matcher.group(Type.ErrorID.name())!=null){
+                    if (matcher.group(Type.ErrorID.name()) != null) {
                         ErrorHandler.printError("The id must start with character");
                         break;
                     }
@@ -43,6 +42,7 @@ public class LexicalAnalyzer {
                 }
             }
         }
-        return new Token(Type.EOF,"$");
+
+        return new Token(Type.EOF, "$");
     }
 }
