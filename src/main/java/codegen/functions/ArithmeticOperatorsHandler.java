@@ -23,35 +23,35 @@ public class ArithmeticOperatorsHandler extends AbstractSymbolHandler {
 
     public void add(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
-        Address s2 = context.getSs().pop();
-        Address s1 = context.getSs().pop();
+        Address s2 = context.getSemanticStack().pop();
+        Address s1 = context.getSemanticStack().pop();
 
         if (s1.getVarType() != VarType.INT || s2.getVarType() != VarType.INT) {
             ErrorHandler.printError("In add two operands must be integer");
         }
         context.getMemory().addTripleAddressCode(Operation.ADD, s1, s2, temp);
-        context.getSs().push(temp);
+        context.getSemanticStack().push(temp);
     }
 
     public void sub(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
-        Address s2 = context.getSs().pop();
-        Address s1 = context.getSs().pop();
+        Address s2 = context.getSemanticStack().pop();
+        Address s1 = context.getSemanticStack().pop();
         if (s1.getVarType() != VarType.INT || s2.getVarType() != VarType.INT) {
             ErrorHandler.printError("In sub two operands must be integer");
         }
         context.getMemory().addTripleAddressCode(Operation.SUB, s1, s2, temp);
-        context.getSs().push(temp);
+        context.getSemanticStack().push(temp);
     }
 
     public void mult(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
-        Address s2 = context.getSs().pop();
-        Address s1 = context.getSs().pop();
+        Address s2 = context.getSemanticStack().pop();
+        Address s1 = context.getSemanticStack().pop();
         if (s1.getVarType() != VarType.INT || s2.getVarType() != VarType.INT) {
             ErrorHandler.printError("In mult two operands must be integer");
         }
         context.getMemory().addTripleAddressCode(Operation.MULT, s1, s2, temp);
-        context.getSs().push(temp);
+        context.getSemanticStack().push(temp);
     }
 }

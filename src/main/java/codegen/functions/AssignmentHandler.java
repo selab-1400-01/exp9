@@ -18,8 +18,8 @@ public class AssignmentHandler extends AbstractSymbolHandler {
     }
 
     public void assign(CodeGenerationContext context) {
-        Address s1 = context.getSs().pop();
-        Address s2 = context.getSs().pop();
+        Address s1 = context.getSemanticStack().pop();
+        Address s2 = context.getSemanticStack().pop();
         if (s1.getVarType() != s2.getVarType()) {
             ErrorHandler.printError("The type of operands in assign is different ");
         }

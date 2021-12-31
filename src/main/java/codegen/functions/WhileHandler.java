@@ -19,11 +19,11 @@ public class WhileHandler extends AbstractSymbolHandler {
 
     public void endWhile(CodeGenerationContext context) {
         context.getMemory().addTripleAddressCode(
-                context.getSs().pop().getNum(),
+                context.getSemanticStack().pop().getNum(),
                 Operation.JPF,
-                context.getSs().pop(),
+                context.getSemanticStack().pop(),
                 new DirectAddress(context.getMemory().getCurrentCodeBlockAddress() + 1, VarType.ADDRESS),
                 null);
-        context.getMemory().addTripleAddressCode(Operation.JP, context.getSs().pop(), null, null);
+        context.getMemory().addTripleAddressCode(Operation.JP, context.getSemanticStack().pop(), null, null);
     }
 }

@@ -28,12 +28,12 @@ public class DefinitionHandler extends AbstractSymbolHandler {
     }
 
     public void defClass(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
         context.getSymbolTable().addClass(context.getSymbolStack().peek());
     }
 
     public void defMethod(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
         String methodName = context.getSymbolStack().pop();
         String className = context.getSymbolStack().pop();
 
@@ -48,17 +48,17 @@ public class DefinitionHandler extends AbstractSymbolHandler {
     }
 
     public void extend(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
         context.getSymbolTable().setSuperClass(context.getSymbolStack().pop(), context.getSymbolStack().peek());
     }
 
     public void defField(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
         context.getSymbolTable().addField(context.getSymbolStack().pop(), context.getSymbolStack().peek());
     }
 
     public void defVar(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
 
         String var = context.getSymbolStack().pop();
         String methodName = context.getSymbolStack().pop();
@@ -72,7 +72,7 @@ public class DefinitionHandler extends AbstractSymbolHandler {
 
     public void methodReturn(CodeGenerationContext context) {
         String methodName = context.getSymbolStack().pop();
-        Address s = context.getSs().pop();
+        Address s = context.getSemanticStack().pop();
         SymbolType t = context.getSymbolTable().getMethodReturnType(context.getSymbolStack().peek(), methodName);
         VarType temp = VarType.INT;
         switch (t) {
@@ -101,7 +101,7 @@ public class DefinitionHandler extends AbstractSymbolHandler {
     }
 
     public void defParam(CodeGenerationContext context) {
-        context.getSs().pop();
+        context.getSemanticStack().pop();
         String param = context.getSymbolStack().pop();
         String methodName = context.getSymbolStack().pop();
         String className = context.getSymbolStack().pop();

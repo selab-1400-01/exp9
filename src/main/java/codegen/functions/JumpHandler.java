@@ -22,17 +22,17 @@ public class JumpHandler extends AbstractSymbolHandler {
     public void jpfSave(CodeGenerationContext context) {
         Address save = new DirectAddress(context.getMemory().saveMemory(), VarType.ADDRESS);
         context.getMemory().addTripleAddressCode(
-                context.getSs().pop().getNum(),
+                context.getSemanticStack().pop().getNum(),
                 Operation.JPF,
-                context.getSs().pop(),
+                context.getSemanticStack().pop(),
                 new DirectAddress(context.getMemory().getCurrentCodeBlockAddress(), VarType.ADDRESS),
                 null);
-        context.getSs().push(save);
+        context.getSemanticStack().push(save);
     }
 
     public void jpHere(CodeGenerationContext context) {
         context.getMemory().addTripleAddressCode(
-                context.getSs().pop().getNum(),
+                context.getSemanticStack().pop().getNum(),
                 Operation.JP,
                 new DirectAddress(context.getMemory().getCurrentCodeBlockAddress(), VarType.ADDRESS),
                 null,

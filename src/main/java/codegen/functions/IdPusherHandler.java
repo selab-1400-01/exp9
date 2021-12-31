@@ -35,36 +35,36 @@ public class IdPusherHandler extends AbstractSymbolHandler {
                 Symbol s = context.getSymbolTable()
                         .get(className, methodName, context.getNextToken().getValue());
                 VarType t = VarType.fromSymbolType(s.getType());
-                context.getSs().push(new DirectAddress(s.getAddress(), t));
+                context.getSemanticStack().push(new DirectAddress(s.getAddress(), t));
             } catch (Exception e) {
-                context.getSs().push(new DirectAddress(0, VarType.NON));
+                context.getSemanticStack().push(new DirectAddress(0, VarType.NON));
             }
             context.getSymbolStack().push(className);
             context.getSymbolStack().push(methodName);
         } else {
-            context.getSs().push(new DirectAddress(0, VarType.NON));
+            context.getSemanticStack().push(new DirectAddress(0, VarType.NON));
         }
 
         context.getSymbolStack().push(context.getNextToken().getValue());
     }
 
     public void fpid(CodeGenerationContext context) {
-        context.getSs().pop();
-        context.getSs().pop();
+        context.getSemanticStack().pop();
+        context.getSemanticStack().pop();
 
         Symbol s = context.getSymbolTable()
                 .get(context.getSymbolStack().pop(), context.getSymbolStack().pop());
         VarType t = VarType.fromSymbolType(s.getType());
-        context.getSs().push(new DirectAddress(s.getAddress(), t));
+        context.getSemanticStack().push(new DirectAddress(s.getAddress(), t));
     }
 
     public void kpid(CodeGenerationContext context) {
-        context.getSs()
+        context.getSemanticStack()
                 .push(context.getSymbolTable().get(context.getNextToken().getValue()));
     }
 
     public void intpid(CodeGenerationContext context) {
-        context.getSs().push(
+        context.getSemanticStack().push(
                 new ImmediateAddress(
                         Integer.parseInt(context.getNextToken().getValue()),
                         VarType.INT));

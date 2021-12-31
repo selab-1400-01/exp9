@@ -8,7 +8,7 @@ import java.util.Deque;
 
 public class CodeGenerationContext {
     private final Memory memory;
-    private final Deque<Address> ss;
+    private final Deque<Address> semanticStack;
     private final Deque<String> symbolStack;
     private final Deque<String> callStack;
     private final SymbolTable symbolTable;
@@ -16,12 +16,12 @@ public class CodeGenerationContext {
     private Token nextToken;
 
     public CodeGenerationContext(Memory memory,
-                                 Deque<Address> ss,
+                                 Deque<Address> semanticStack,
                                  Deque<String> symbolStack,
                                  Deque<String> callStack,
                                  SymbolTable symbolTable) {
         this.memory = memory;
-        this.ss = ss;
+        this.semanticStack = semanticStack;
         this.symbolStack = symbolStack;
         this.callStack = callStack;
         this.symbolTable = symbolTable;
@@ -31,8 +31,8 @@ public class CodeGenerationContext {
         return memory;
     }
 
-    public Deque<Address> getSs() {
-        return ss;
+    public Deque<Address> getSemanticStack() {
+        return semanticStack;
     }
 
     public Deque<String> getSymbolStack() {

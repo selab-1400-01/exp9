@@ -19,7 +19,7 @@ public class DefaultMethodsHandler extends AbstractSymbolHandler {
     }
 
     private void defMain(CodeGenerationContext context) {
-        context.getMemory().addTripleAddressCode(context.getSs().pop().getNum(),
+        context.getMemory().addTripleAddressCode(context.getSemanticStack().pop().getNum(),
                 Operation.JP,
                 new DirectAddress(context.getMemory().getCurrentCodeBlockAddress(), VarType.ADDRESS),
                 null,
@@ -35,6 +35,6 @@ public class DefaultMethodsHandler extends AbstractSymbolHandler {
     }
 
     public void print(CodeGenerationContext context) {
-        context.getMemory().addTripleAddressCode(Operation.PRINT, context.getSs().pop(), null, null);
+        context.getMemory().addTripleAddressCode(Operation.PRINT, context.getSemanticStack().pop(), null, null);
     }
 }

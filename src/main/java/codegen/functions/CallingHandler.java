@@ -24,8 +24,8 @@ public class CallingHandler extends AbstractSymbolHandler {
     }
 
     public void startCall(CodeGenerationContext context) {
-        context.getSs().pop();
-        context.getSs().pop();
+        context.getSemanticStack().pop();
+        context.getSemanticStack().pop();
         String methodName = context.getSymbolStack().pop();
         String className = context.getSymbolStack().pop();
         context.getSymbolTable().startCall(className, methodName);
@@ -48,7 +48,7 @@ public class CallingHandler extends AbstractSymbolHandler {
         };
 
         Address temp = new DirectAddress(context.getMemory().getTemp(), t);
-        context.getSs().push(temp);
+        context.getSemanticStack().push(temp);
         context.getMemory().addTripleAddressCode(
                 Operation.ASSIGN,
                 new ImmediateAddress(temp.getNum(), VarType.ADDRESS),
@@ -79,7 +79,7 @@ public class CallingHandler extends AbstractSymbolHandler {
             Symbol s = context.getSymbolTable().getNextParam(context.getCallStack().peek(), methodName);
             VarType t = VarType.fromSymbolType(s.getType());
 
-            Address param = context.getSs().pop();
+            Address param = context.getSemanticStack().pop();
             if (param.getVarType() != t) {
                 ErrorHandler.printError("The argument type isn't match");
             }
