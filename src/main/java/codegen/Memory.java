@@ -45,7 +45,7 @@ public class Memory {
         return codeBlock.size();
     }
 
-    public void pintCodeBlock() {
+    public void printCodeBlock() {
         System.out.println("Code Block");
         for (int i = 0; i < codeBlock.size(); i++) {
             System.out.println(i + " : " + codeBlock.get(i).toString());

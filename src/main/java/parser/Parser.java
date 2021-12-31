@@ -68,7 +68,7 @@ public class Parser {
                         parsStack.push(parseTable.getGotoTable(parsStack.peek(), rule.getLHS()));
                         Log.print(parsStack.peek() + "");
                         try {
-                            cg.semanticFunction(rule.getSemanticAction(), lookAhead);
+                            cg.performSemanticFunction(rule.getSemanticAction(), lookAhead);
                         } catch (Exception e) {
                             Log.print("Code Generator Error");
                         }
