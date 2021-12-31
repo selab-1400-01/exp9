@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Token {
     private Type type;
-    private String value;
+    private final String value;
 
     public Token(Type type, String value) {
         this.type = type;
@@ -37,8 +37,7 @@ public class Token {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Token) {
-            Token temp = (Token) o;
+        if (o instanceof Token temp) {
             if (temp.type == this.type) {
                 return this.type != Type.KEYWORDS || this.value.equals(temp.value);
             }
@@ -65,9 +64,5 @@ public class Token {
 
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 }
