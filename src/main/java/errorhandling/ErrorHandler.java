@@ -1,10 +1,18 @@
 package errorhandling;
 
 public class ErrorHandler {
-    public static boolean hasError = false;
+    private static boolean hasError = false;
 
     public static void printError(String msg) {
         hasError = true;
         System.out.println(msg);
+    }
+
+    public static boolean isHasError() {
+        return hasError;
+    }
+
+    public static void setHasError(boolean hasError) {
+        ErrorHandler.hasError = hasError;
     }
 }

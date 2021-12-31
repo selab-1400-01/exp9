@@ -53,23 +53,23 @@ public class Parser {
                 currentAction = parseTable.getActionTable(parsStack.peek(), lookAhead);
                 Log.print(currentAction.toString());
 
-                switch (currentAction.action) {
+                switch (currentAction.getAction()) {
                     case SHIFT:
-                        parsStack.push(currentAction.number);
+                        parsStack.push(currentAction.getNumber());
                         lookAhead = lexicalAnalyzer.getNextToken();
 
                         break;
                     case REDUCE:
-                        Rule rule = rules.get(currentAction.number);
-                        for (int i = 0; i < rule.RHS.size(); i++) {
+                        Rule rule = rules.get(currentAction.getNumber());
+                        for (int i = 0; i < rule.getRHS().size(); i++) {
                             parsStack.pop();
                         }
 
-                        Log.print(parsStack.peek() + "\t" + rule.LHS);
-                        parsStack.push(parseTable.getGotoTable(parsStack.peek(), rule.LHS));
+                        Log.print(parsStack.peek() + "\t" + rule.getLHS());
+                        parsStack.push(parseTable.getGotoTable(parsStack.peek(), rule.getLHS()));
                         Log.print(parsStack.peek() + "");
                         try {
-                            cg.semanticFunction(rule.semanticAction, lookAhead);
+                            cg.semanticFunction(rule.getSemanticAction(), lookAhead);
                         } catch (Exception e) {
                             Log.print("Code Generator Error");
                         }
@@ -85,7 +85,7 @@ public class Parser {
             }
 
         }
-        if (!ErrorHandler.hasError)
+        if (!ErrorHandler.isHasError())
             cg.printMemory();
     }
 }

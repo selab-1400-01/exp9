@@ -33,15 +33,39 @@ public class Rule {
         }
     }
 
-    public NonTerminal LHS;
-    public List<GrammarSymbol> RHS;
-    public int semanticAction;
+    private NonTerminal LHS;
+    private List<GrammarSymbol> RHS;
+    private int semanticAction;
+
+    public NonTerminal getLHS() {
+        return LHS;
+    }
+
+    public void setLHS(NonTerminal LHS) {
+        this.LHS = LHS;
+    }
+
+    public List<GrammarSymbol> getRHS() {
+        return RHS;
+    }
+
+    public void setRHS(List<GrammarSymbol> RHS) {
+        this.RHS = RHS;
+    }
+
+    public int getSemanticAction() {
+        return semanticAction;
+    }
+
+    public void setSemanticAction(int semanticAction) {
+        this.semanticAction = semanticAction;
+    }
 }
 
 class GrammarSymbol {
-    public boolean isTerminal;
-    public NonTerminal nonTerminal;
-    public Token terminal;
+    private boolean isTerminal;
+    private NonTerminal nonTerminal;
+    private Token terminal;
 
     public GrammarSymbol(NonTerminal nonTerminal) {
         this.nonTerminal = nonTerminal;
@@ -51,5 +75,29 @@ class GrammarSymbol {
     public GrammarSymbol(Token terminal) {
         this.terminal = terminal;
         isTerminal = true;
+    }
+
+    public boolean isTerminal() {
+        return isTerminal;
+    }
+
+    public void setTerminal(boolean terminal) {
+        isTerminal = terminal;
+    }
+
+    public NonTerminal getNonTerminal() {
+        return nonTerminal;
+    }
+
+    public void setNonTerminal(NonTerminal nonTerminal) {
+        this.nonTerminal = nonTerminal;
+    }
+
+    public Token getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Token terminal) {
+        this.terminal = terminal;
     }
 }
