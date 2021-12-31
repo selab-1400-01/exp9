@@ -34,7 +34,7 @@ public class CallingHandler extends AbstractSymbolHandler {
         try {
             context.getSymbolTable().getNextParam(className, methodName);
             ErrorHandler.printError("The few argument pass for method");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException ignored) {
         }
 
         VarType t = switch (context.getSymbolTable().getMethodReturnType(className, methodName)) {
