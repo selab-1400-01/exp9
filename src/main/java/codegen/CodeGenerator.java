@@ -1,22 +1,23 @@
 package codegen;
 
-import logging.Log;
 import errorhandling.ErrorHandler;
+import logging.Log;
 import scanner.token.Token;
 import semantic.symbol.Symbol;
 import semantic.symbol.SymbolTable;
 import semantic.symbol.SymbolType;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Alireza on 6/27/2015.
  */
 public class CodeGenerator {
     private Memory memory = new Memory();
-    private Stack<Address> ss = new Stack<Address>();
-    private Stack<String> symbolStack = new Stack<>();
-    private Stack<String> callStack = new Stack<>();
+    private Deque<Address> ss = new ArrayDeque<>();
+    private Deque<String> symbolStack = new ArrayDeque<>();
+    private Deque<String> callStack = new ArrayDeque<>();
     private SymbolTable symbolTable;
 
     public CodeGenerator() {

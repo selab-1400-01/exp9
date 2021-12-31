@@ -2,14 +2,17 @@ package parser;
 
 import scanner.token.Token;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mohammad hosein on 6/25/2015.
  */
 public class ParseTable {
-    private ArrayList<Map<Token, Action>> actionTable;
-    private ArrayList<Map<NonTerminal, Integer>> gotoTable;
+    private List<Map<Token, Action>> actionTable;
+    private List<Map<NonTerminal, Integer>> gotoTable;
 
     public ParseTable(String jsonTable) throws Exception {
         jsonTable = jsonTable.substring(2, jsonTable.length() - 2);
@@ -30,8 +33,8 @@ public class ParseTable {
                 terminals.put(i, new Token(Token.getTypeFormString(cols[i]), cols[i]));
             }
         }
-        actionTable = new ArrayList<Map<Token, Action>>();
-        gotoTable = new ArrayList<Map<NonTerminal, Integer>>();
+        actionTable = new ArrayList<>();
+        gotoTable = new ArrayList<>();
         for (int i = 1; i < Rows.length; i++) {
             if (i == 100) {
                 int a = 1;
@@ -39,7 +42,7 @@ public class ParseTable {
             }
             Rows[i] = Rows[i].substring(1, Rows[i].length() - 1);
             cols = Rows[i].split("\",\"");
-            actionTable.add(new HashMap<Token, Action>());
+            actionTable.add(new HashMap<>());
             gotoTable.add(new HashMap<>());
             for (int j = 1; j < cols.length; j++) {
                 if (!cols[j].equals("")) {

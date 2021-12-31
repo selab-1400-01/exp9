@@ -1,35 +1,37 @@
 package parser;
 
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Stack;
-
-import logging.Log;
 import codegen.CodeGenerator;
 import errorhandling.ErrorHandler;
+import logging.Log;
 import scanner.LexicalAnalyzer;
 import scanner.token.Token;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+
 
 public class Parser {
-    private ArrayList<Rule> rules;
-    private Stack<Integer> parsStack;
+    private List<Rule> rules;
+    private Deque<Integer> parsStack;
     private ParseTable parseTable;
     private LexicalAnalyzer lexicalAnalyzer;
     private CodeGenerator cg;
 
     public Parser() {
-        parsStack = new Stack<Integer>();
+        parsStack = new ArrayDeque<>();
         parsStack.push(0);
         try {
             parseTable = new ParseTable(Files.readAllLines(Paths.get("src/main/resources/parseTable")).get(0));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        rules = new ArrayList<Rule>();
+        rules = new ArrayList<>();
         try {
             for (String stringRule : Files.readAllLines(Paths.get("src/main/resources/Rules"))) {
                 rules.add(new Rule(stringRule));

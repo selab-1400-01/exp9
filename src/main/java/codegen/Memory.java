@@ -1,12 +1,13 @@
 package codegen;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mohammad hosein on 6/27/2015.
  */
 public class Memory {
-    private ArrayList<_3AddressCode> codeBlock;
+    private List<_3AddressCode> codeBlock;
     private int lastTempIndex;
     private int lastDataAddress;
     private final int startTempMemoryAddress = 500;
@@ -15,7 +16,7 @@ public class Memory {
     private final int tempSize = 4;
 
     public Memory() {
-        codeBlock = new ArrayList<_3AddressCode>();
+        codeBlock = new ArrayList<>();
         lastTempIndex = startTempMemoryAddress;
         lastDataAddress = startDataMemoryAddress;
     }
