@@ -106,8 +106,8 @@ public class SymbolTable {
 
 
     class ProgramClass {
-        private Map<String, Symbol> fields;
-        private Map<String, Method> methods;
+        private final Map<String, Symbol> fields;
+        private final Map<String, Method> methods;
         private ProgramClass programClass;
 
         public ProgramClass() {
@@ -126,12 +126,12 @@ public class SymbolTable {
 
     class Method {
         private final List<String> orderedParameters;
-        public int codeAddress;
-        public Map<String, Symbol> parameters;
-        public Map<String, Symbol> localVariable;
-        public int callerAddress;
-        public int returnAddress;
-        public SymbolType returnType;
+        private final int codeAddress;
+        private final Map<String, Symbol> parameters;
+        private final Map<String, Symbol> localVariable;
+        private final int callerAddress;
+        private final int returnAddress;
+        private final SymbolType returnType;
         private int index;
 
         public Method(int codeAddress, SymbolType returnType) {
@@ -164,5 +164,6 @@ public class SymbolTable {
         private Symbol getNextParameter() {
             return parameters.get(orderedParameters.get(index++));
         }
+
     }
 }
