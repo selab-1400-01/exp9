@@ -10,9 +10,6 @@ import semantic.symbol.SymbolType;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Created by Alireza on 6/27/2015.
- */
 public class CodeGenerator {
     private Memory memory = new Memory();
     private Deque<Address> ss = new ArrayDeque<>();

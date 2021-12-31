@@ -3,9 +3,6 @@ package codegen;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mohammad hosein on 6/27/2015.
- */
 public class Memory {
     private List<TripleAddressCode> codeBlock;
     private int lastTempIndex;

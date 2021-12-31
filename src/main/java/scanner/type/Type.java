@@ -3,9 +3,6 @@ package scanner.type;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Alireza on 2015-05-26.
- */
 public enum Type {
     KEYWORDS("class|extends|public|static|void|return|main|boolean|int|if|else|while|true|false|System.out.println"),
     COMMENT("(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|//[^\\s\\r\\n]*"),
