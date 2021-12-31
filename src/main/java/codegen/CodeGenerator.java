@@ -150,9 +150,7 @@ public class CodeGenerator {
 
     public void checkID() {
         symbolStack.pop();
-        if (ss.peek().varType == VarType.NON) {
-            //TODO : error
-        }
+        //TODO : error
     }
 
     public void pid(Token next) {
@@ -161,15 +159,7 @@ public class CodeGenerator {
             String className = symbolStack.pop();
             try {
                 Symbol s = symbolTable.get(className, methodName, next.value);
-                VarType t = VarType.INT;
-                switch (s.type) {
-                    case BOOL:
-                        t = VarType.BOOL;
-                        break;
-                    case INT:
-                        t = VarType.INT;
-                        break;
-                }
+                VarType t = getVarType(s);
                 ss.push(new Address(s.address, t));
             } catch (Exception e) {
                 ss.push(new Address(0, VarType.NON));
@@ -188,16 +178,15 @@ public class CodeGenerator {
         ss.pop();
 
         Symbol s = symbolTable.get(symbolStack.pop(), symbolStack.pop());
-        VarType t = VarType.INT;
-        switch (s.type) {
-            case BOOL:
-                t = VarType.BOOL;
-                break;
-            case INT:
-                t = VarType.INT;
-                break;
-        }
+        VarType t = getVarType(s);
         ss.push(new Address(s.address, t));
+    }
+
+    private VarType getVarType(Symbol s) {
+        return switch (s.type) {
+            case BOOL -> VarType.BOOL;
+            case INT -> VarType.INT;
+        };
     }
 
     public void kpid(Token next) {
@@ -229,15 +218,10 @@ public class CodeGenerator {
         } catch (IndexOutOfBoundsException e) {
         }
 
-        VarType t = VarType.INT;
-        switch (symbolTable.getMethodReturnType(className, methodName)) {
-            case INT:
-                t = VarType.INT;
-                break;
-            case BOOL:
-                t = VarType.BOOL;
-                break;
-        }
+        VarType t = switch (symbolTable.getMethodReturnType(className, methodName)) {
+            case INT -> VarType.INT;
+            case BOOL -> VarType.BOOL;
+        };
 
         Address temp = new Address(memory.getTemp(), t);
         ss.push(temp);
@@ -265,15 +249,7 @@ public class CodeGenerator {
         String methodName = callStack.pop();
         try {
             Symbol s = symbolTable.getNextParam(callStack.peek(), methodName);
-            VarType t = VarType.INT;
-            switch (s.type) {
-                case BOOL:
-                    t = VarType.BOOL;
-                    break;
-                case INT:
-                    t = VarType.INT;
-                    break;
-            }
+            VarType t = getVarType(s)
 
             Address param = ss.pop();
             if (param.varType != t) {
