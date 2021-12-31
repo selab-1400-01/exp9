@@ -1,5 +1,11 @@
 package parser;
 
+enum Act {
+    SHIFT,
+    REDUCE,
+    ACCEPT
+}
+
 public class Action {
     private Act action;
     private int number;
@@ -36,10 +42,4 @@ public class Action {
     public void setNumber(int number) {
         this.number = number;
     }
-}
-
-enum Act {
-    SHIFT,
-    REDUCE,
-    ACCEPT
 }

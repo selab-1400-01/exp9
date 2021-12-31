@@ -125,10 +125,10 @@ public class SymbolTable {
     }
 
     class Method {
+        private final List<String> orderedParameters;
         public int codeAddress;
         public Map<String, Symbol> parameters;
         public Map<String, Symbol> localVariable;
-        private final List<String> orderedParameters;
         public int callerAddress;
         public int returnAddress;
         public SymbolType returnType;

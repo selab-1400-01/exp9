@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rule {
+    private NonTerminal LHS;
+    private List<GrammarSymbol> RHS;
+    private int semanticAction;
     public Rule(String stringRule) {
         int index = stringRule.indexOf("#");
         if (index != -1) {
@@ -32,10 +35,6 @@ public class Rule {
             }
         }
     }
-
-    private NonTerminal LHS;
-    private List<GrammarSymbol> RHS;
-    private int semanticAction;
 
     public NonTerminal getLHS() {
         return LHS;
@@ -81,10 +80,6 @@ class GrammarSymbol {
         return isTerminal;
     }
 
-    public void setTerminal(boolean terminal) {
-        isTerminal = terminal;
-    }
-
     public NonTerminal getNonTerminal() {
         return nonTerminal;
     }
@@ -95,6 +90,10 @@ class GrammarSymbol {
 
     public Token getTerminal() {
         return terminal;
+    }
+
+    public void setTerminal(boolean terminal) {
+        isTerminal = terminal;
     }
 
     public void setTerminal(Token terminal) {

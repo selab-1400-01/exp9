@@ -19,8 +19,8 @@ import java.util.List;
 public class Parser {
     private final List<Rule> rules;
     private final Deque<Integer> parsStack;
-    private ParseTable parseTable;
     private final CodeGenerator cg;
+    private ParseTable parseTable;
 
     public Parser() {
         parsStack = new ArrayDeque<>();
