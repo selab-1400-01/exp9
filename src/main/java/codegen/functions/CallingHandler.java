@@ -1,6 +1,11 @@
 package codegen.functions;
 
-import codegen.*;
+import codegen.CodeGenerationContext;
+import codegen.ImmediateAddress;
+import codegen.Operation;
+import codegen.VarType;
+import codegen.addresses.Address;
+import codegen.addresses.DirectAddress;
 import errorhandling.ErrorHandler;
 import semantic.symbol.Symbol;
 

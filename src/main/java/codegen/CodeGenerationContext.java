@@ -1,5 +1,6 @@
 package codegen;
 
+import codegen.addresses.Address;
 import scanner.token.Token;
 import semantic.symbol.SymbolTable;
 

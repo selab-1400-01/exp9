@@ -1,9 +1,9 @@
 package codegen.functions;
 
 import codegen.CodeGenerationContext;
-import codegen.DirectAddress;
 import codegen.ImmediateAddress;
 import codegen.VarType;
+import codegen.addresses.DirectAddress;
 import semantic.symbol.Symbol;
 
 import java.util.HashMap;

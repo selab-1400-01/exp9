@@ -1,4 +1,6 @@
-package codegen;
+package codegen.addresses;
+
+import codegen.VarType;
 
 public class IndirectAddress extends Address {
     public IndirectAddress(int num, VarType varType) {

@@ -1,4 +1,6 @@
-package codegen;
+package codegen.addresses;
+
+import codegen.VarType;
 
 public abstract class Address {
     private final int num;

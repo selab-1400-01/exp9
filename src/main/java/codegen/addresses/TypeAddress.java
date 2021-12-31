@@ -1,4 +1,4 @@
-package codegen;
+package codegen.addresses;
 
 public enum TypeAddress {
     DIRECT,

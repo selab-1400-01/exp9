@@ -1,6 +1,10 @@
 package codegen.functions;
 
-import codegen.*;
+import codegen.CodeGenerationContext;
+import codegen.Operation;
+import codegen.VarType;
+import codegen.addresses.Address;
+import codegen.addresses.DirectAddress;
 
 import java.util.HashMap;
 import java.util.Map;

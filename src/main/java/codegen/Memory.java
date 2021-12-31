@@ -1,5 +1,7 @@
 package codegen;
 
+import codegen.addresses.Address;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package codegen.functions;
 
-import codegen.Address;
 import codegen.CodeGenerationContext;
 import codegen.Operation;
+import codegen.addresses.Address;
 import errorhandling.ErrorHandler;
 
 import java.util.HashMap;
