@@ -3,9 +3,6 @@ package codegen.functions;
 import codegen.CodeGenerationContext;
 import codegen.Operation;
 import codegen.VarType;
-import codegen.addresses.Address;
-import codegen.addresses.DirectAddress;
-import errorhandling.ErrorHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,46 +20,38 @@ public class LogicsHandler extends AbstractSymbolHandler {
     }
 
     private void equal(CodeGenerationContext context) {
-        Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
-        Address s2 = context.getSemanticStack().pop();
-        Address s1 = context.getSemanticStack().pop();
-        if (s1.getVarType() != s2.getVarType()) {
-            ErrorHandler.printError("The type of operands in equal operator is different");
-        }
-        context.getMemory().addTripleAddressCode(Operation.EQ, s1, s2, temp);
-        context.getSemanticStack().push(temp);
+        this.addTripleAddressCode(
+                context,
+                VarType.BOOL,
+                Operation.EQ,
+                (s1, s2) -> s1.getVarType() == s2.getVarType(),
+                "The type of operands in equal operator is different");
     }
 
     private void lessThan(CodeGenerationContext context) {
-        Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
-        Address s2 = context.getSemanticStack().pop();
-        Address s1 = context.getSemanticStack().pop();
-        if (s1.getVarType() != VarType.INT || s2.getVarType() != VarType.INT) {
-            ErrorHandler.printError("The type of operands in less than operator is different");
-        }
-        context.getMemory().addTripleAddressCode(Operation.LT, s1, s2, temp);
-        context.getSemanticStack().push(temp);
+        this.addTripleAddressCode(
+                context,
+                VarType.BOOL,
+                Operation.LT,
+                (s1, s2) -> !(s1.getVarType() != VarType.INT || s2.getVarType() != VarType.INT),
+                "The type of operands in less than operator is different");
     }
 
     private void and(CodeGenerationContext context) {
-        Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
-        Address s2 = context.getSemanticStack().pop();
-        Address s1 = context.getSemanticStack().pop();
-        if (s1.getVarType() != VarType.BOOL || s2.getVarType() != VarType.BOOL) {
-            ErrorHandler.printError("In and operator the operands must be boolean");
-        }
-        context.getMemory().addTripleAddressCode(Operation.AND, s1, s2, temp);
-        context.getSemanticStack().push(temp);
+        this.addTripleAddressCode(
+                context,
+                VarType.BOOL,
+                Operation.AND,
+                (s1, s2) -> !(s1.getVarType() != VarType.BOOL || s2.getVarType() != VarType.BOOL),
+                "In and operator the operands must be boolean");
     }
 
     private void not(CodeGenerationContext context) {
-        Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
-        Address s2 = context.getSemanticStack().pop();
-        Address s1 = context.getSemanticStack().pop();
-        if (s1.getVarType() != VarType.BOOL) {
-            ErrorHandler.printError("In not operator the operand must be boolean");
-        }
-        context.getMemory().addTripleAddressCode(Operation.NOT, s1, s2, temp);
-        context.getSemanticStack().push(temp);
+        this.addTripleAddressCode(
+                context,
+                VarType.BOOL,
+                Operation.NOT,
+                (s1, s2) -> s1.getVarType() == VarType.BOOL,
+                "In not operator the operand must be boolean");
     }
 }
