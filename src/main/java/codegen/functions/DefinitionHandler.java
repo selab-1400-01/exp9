@@ -27,12 +27,12 @@ public class DefinitionHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void defClass(CodeGenerationContext context) {
+    private void defClass(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         context.getSymbolTable().addClass(context.getSymbolStack().peek());
     }
 
-    public void defMethod(CodeGenerationContext context) {
+    private void defMethod(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         String methodName = context.getSymbolStack().pop();
         String className = context.getSymbolStack().pop();
@@ -43,21 +43,21 @@ public class DefinitionHandler extends AbstractSymbolHandler {
         context.getSymbolStack().push(methodName);
     }
 
-    public void popClass(CodeGenerationContext context) {
+    private void popClass(CodeGenerationContext context) {
         context.getSymbolStack().pop();
     }
 
-    public void extend(CodeGenerationContext context) {
+    private void extend(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         context.getSymbolTable().setSuperClass(context.getSymbolStack().pop(), context.getSymbolStack().peek());
     }
 
-    public void defField(CodeGenerationContext context) {
+    private void defField(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         context.getSymbolTable().addField(context.getSymbolStack().pop(), context.getSymbolStack().peek());
     }
 
-    public void defVar(CodeGenerationContext context) {
+    private void defVar(CodeGenerationContext context) {
         context.getSemanticStack().pop();
 
         String var = context.getSymbolStack().pop();
@@ -70,7 +70,7 @@ public class DefinitionHandler extends AbstractSymbolHandler {
         context.getSymbolStack().push(methodName);
     }
 
-    public void methodReturn(CodeGenerationContext context) {
+    private void methodReturn(CodeGenerationContext context) {
         String methodName = context.getSymbolStack().pop();
         Address s = context.getSemanticStack().pop();
         SymbolType t = context.getSymbolTable().getMethodReturnType(context.getSymbolStack().peek(), methodName);
@@ -100,7 +100,7 @@ public class DefinitionHandler extends AbstractSymbolHandler {
                 null);
     }
 
-    public void defParam(CodeGenerationContext context) {
+    private void defParam(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         String param = context.getSymbolStack().pop();
         String methodName = context.getSymbolStack().pop();

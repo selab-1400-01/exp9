@@ -21,7 +21,7 @@ public class ArithmeticOperatorsHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void add(CodeGenerationContext context) {
+    private void add(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
@@ -33,7 +33,7 @@ public class ArithmeticOperatorsHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(temp);
     }
 
-    public void sub(CodeGenerationContext context) {
+    private void sub(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
@@ -44,7 +44,7 @@ public class ArithmeticOperatorsHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(temp);
     }
 
-    public void mult(CodeGenerationContext context) {
+    private void mult(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.INT);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();

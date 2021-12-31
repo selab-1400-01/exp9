@@ -16,11 +16,11 @@ public class LastTypeHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void lastTypeBool(CodeGenerationContext context) {
+    private void lastTypeBool(CodeGenerationContext context) {
         context.getSymbolTable().setLastType(SymbolType.BOOL);
     }
 
-    public void lastTypeInt(CodeGenerationContext context) {
+    private void lastTypeInt(CodeGenerationContext context) {
         context.getSymbolTable().setLastType(SymbolType.INT);
     }
 }

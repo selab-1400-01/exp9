@@ -17,7 +17,7 @@ public class AssignmentHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void assign(CodeGenerationContext context) {
+    private void assign(CodeGenerationContext context) {
         Address s1 = context.getSemanticStack().pop();
         Address s2 = context.getSemanticStack().pop();
         if (s1.getVarType() != s2.getVarType()) {

@@ -23,11 +23,11 @@ public class IdPusherHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void checkID(CodeGenerationContext context) {
+    private void checkID(CodeGenerationContext context) {
         context.getSymbolStack().pop();
     }
 
-    public void pid(CodeGenerationContext context) {
+    private void pid(CodeGenerationContext context) {
         if (context.getSymbolStack().size() > 1) {
             String methodName = context.getSymbolStack().pop();
             String className = context.getSymbolStack().pop();
@@ -48,7 +48,7 @@ public class IdPusherHandler extends AbstractSymbolHandler {
         context.getSymbolStack().push(context.getNextToken().getValue());
     }
 
-    public void fpid(CodeGenerationContext context) {
+    private void fpid(CodeGenerationContext context) {
         context.getSemanticStack().pop();
         context.getSemanticStack().pop();
 
@@ -58,12 +58,12 @@ public class IdPusherHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(new DirectAddress(s.getAddress(), t));
     }
 
-    public void kpid(CodeGenerationContext context) {
+    private void kpid(CodeGenerationContext context) {
         context.getSemanticStack()
                 .push(context.getSymbolTable().get(context.getNextToken().getValue()));
     }
 
-    public void intpid(CodeGenerationContext context) {
+    private void intpid(CodeGenerationContext context) {
         context.getSemanticStack().push(
                 new ImmediateAddress(
                         Integer.parseInt(context.getNextToken().getValue()),

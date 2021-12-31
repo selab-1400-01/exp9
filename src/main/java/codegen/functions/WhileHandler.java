@@ -17,7 +17,7 @@ public class WhileHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void endWhile(CodeGenerationContext context) {
+    private void endWhile(CodeGenerationContext context) {
         context.getMemory().addTripleAddressCode(
                 context.getSemanticStack().pop().getNum(),
                 Operation.JPF,

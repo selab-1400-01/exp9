@@ -34,7 +34,7 @@ public class DefaultMethodsHandler extends AbstractSymbolHandler {
         context.getSymbolStack().push(methodName);
     }
 
-    public void print(CodeGenerationContext context) {
+    private void print(CodeGenerationContext context) {
         context.getMemory().addTripleAddressCode(Operation.PRINT, context.getSemanticStack().pop(), null, null);
     }
 }

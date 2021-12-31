@@ -33,7 +33,7 @@ public class CallingHandler extends AbstractSymbolHandler {
         context.getCallStack().push(methodName);
     }
 
-    public void call(CodeGenerationContext context) {
+    private void call(CodeGenerationContext context) {
         String methodName = context.getCallStack().pop();
         String className = context.getCallStack().pop();
         try {
@@ -73,7 +73,7 @@ public class CallingHandler extends AbstractSymbolHandler {
                 null);
     }
 
-    public void arg(CodeGenerationContext context) {
+    private void arg(CodeGenerationContext context) {
         String methodName = context.getCallStack().pop();
         try {
             Symbol s = context.getSymbolTable().getNextParam(context.getCallStack().peek(), methodName);

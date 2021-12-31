@@ -17,12 +17,12 @@ public class GeneralActionHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void label(CodeGenerationContext context) {
+    private void label(CodeGenerationContext context) {
         context.getSemanticStack().push(
                 new DirectAddress(context.getMemory().getCurrentCodeBlockAddress(), VarType.ADDRESS));
     }
 
-    public void save(CodeGenerationContext context) {
+    private void save(CodeGenerationContext context) {
         context.getSemanticStack().push(
                 new DirectAddress(context.getMemory().saveMemory(), VarType.ADDRESS));
     }

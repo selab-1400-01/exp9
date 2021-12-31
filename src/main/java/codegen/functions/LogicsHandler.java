@@ -22,7 +22,7 @@ public class LogicsHandler extends AbstractSymbolHandler {
         return functionalities;
     }
 
-    public void equal(CodeGenerationContext context) {
+    private void equal(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
@@ -33,7 +33,7 @@ public class LogicsHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(temp);
     }
 
-    public void lessThan(CodeGenerationContext context) {
+    private void lessThan(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
@@ -44,7 +44,7 @@ public class LogicsHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(temp);
     }
 
-    public void and(CodeGenerationContext context) {
+    private void and(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
@@ -55,7 +55,7 @@ public class LogicsHandler extends AbstractSymbolHandler {
         context.getSemanticStack().push(temp);
     }
 
-    public void not(CodeGenerationContext context) {
+    private void not(CodeGenerationContext context) {
         Address temp = new DirectAddress(context.getMemory().getTemp(), VarType.BOOL);
         Address s2 = context.getSemanticStack().pop();
         Address s1 = context.getSemanticStack().pop();
