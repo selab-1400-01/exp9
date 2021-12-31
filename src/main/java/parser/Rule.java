@@ -62,7 +62,7 @@ public class Rule {
 }
 
 class GrammarSymbol {
-    private boolean isTerminal;
+    private final boolean isTerminal;
     private NonTerminal nonTerminal;
     private Token terminal;
 
@@ -76,27 +76,4 @@ class GrammarSymbol {
         isTerminal = true;
     }
 
-    public boolean isTerminal() {
-        return isTerminal;
-    }
-
-    public NonTerminal getNonTerminal() {
-        return nonTerminal;
-    }
-
-    public void setNonTerminal(NonTerminal nonTerminal) {
-        this.nonTerminal = nonTerminal;
-    }
-
-    public Token getTerminal() {
-        return terminal;
-    }
-
-    public void setTerminal(boolean terminal) {
-        isTerminal = terminal;
-    }
-
-    public void setTerminal(Token terminal) {
-        this.terminal = terminal;
-    }
 }
