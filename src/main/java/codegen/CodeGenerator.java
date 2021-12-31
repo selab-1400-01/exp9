@@ -77,10 +77,10 @@ public class CodeGenerator {
                 save();
                 break;
             case 15:
-                _while();
+                endWhile();
                 break;
             case 16:
-                jpf_save();
+                jpfSave();
                 break;
             case 17:
                 jpHere();
@@ -92,7 +92,7 @@ public class CodeGenerator {
                 equal();
                 break;
             case 20:
-                less_than();
+                lessThan();
                 break;
             case 21:
                 and();
@@ -137,7 +137,7 @@ public class CodeGenerator {
     }
 
     private void defMain() {
-        memory.add3AddressCode(ss.pop().num,
+        memory.addTripleAddressCode(ss.pop().num,
                 Operation.JP,
                 new Address(memory.getCurrentCodeBlockAddress(), VarType.ADDRESS),
                 null,
@@ -244,12 +244,12 @@ public class CodeGenerator {
 
         Address temp = new Address(memory.getTemp(), t);
         ss.push(temp);
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 Operation.ASSIGN,
                 new Address(temp.num, VarType.ADDRESS, TypeAddress.IMMEDIATE),
                 new Address(symbolTable.getMethodReturnAddress(className, methodName), VarType.ADDRESS),
                 null);
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 Operation.ASSIGN,
                 new Address(
                         memory.getCurrentCodeBlockAddress() + 2,
@@ -259,7 +259,7 @@ public class CodeGenerator {
                         symbolTable.getMethodCallerAddress(className, methodName),
                         VarType.ADDRESS),
                 null);
-        memory.add3AddressCode(Operation.JP, new Address(symbolTable.getMethodAddress(className, methodName), VarType.ADDRESS), null, null);
+        memory.addTripleAddressCode(Operation.JP, new Address(symbolTable.getMethodAddress(className, methodName), VarType.ADDRESS), null, null);
     }
 
     public void arg() {
@@ -283,7 +283,7 @@ public class CodeGenerator {
                 ErrorHandler.printError("The argument type isn't match");
             }
 
-            memory.add3AddressCode(Operation.ASSIGN, param, new Address(s.address, t), null);
+            memory.addTripleAddressCode(Operation.ASSIGN, param, new Address(s.address, t), null);
 
         } catch (IndexOutOfBoundsException e) {
             ErrorHandler.printError("Too many arguments pass for method");
@@ -298,7 +298,7 @@ public class CodeGenerator {
         if (s1.varType != s2.varType) {
             ErrorHandler.printError("The type of operands in assign is different ");
         }
-        memory.add3AddressCode(Operation.ASSIGN, s1, s2, null);
+        memory.addTripleAddressCode(Operation.ASSIGN, s1, s2, null);
     }
 
     public void add() {
@@ -309,7 +309,7 @@ public class CodeGenerator {
         if (s1.varType != VarType.INT || s2.varType != VarType.INT) {
             ErrorHandler.printError("In add two operands must be integer");
         }
-        memory.add3AddressCode(Operation.ADD, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.ADD, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -320,7 +320,7 @@ public class CodeGenerator {
         if (s1.varType != VarType.INT || s2.varType != VarType.INT) {
             ErrorHandler.printError("In sub two operands must be integer");
         }
-        memory.add3AddressCode(Operation.SUB, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.SUB, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -331,7 +331,7 @@ public class CodeGenerator {
         if (s1.varType != VarType.INT || s2.varType != VarType.INT) {
             ErrorHandler.printError("In mult two operands must be integer");
         }
-        memory.add3AddressCode(Operation.MULT, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.MULT, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -343,19 +343,19 @@ public class CodeGenerator {
         ss.push(new Address(memory.saveMemory(), VarType.ADDRESS));
     }
 
-    public void _while() {
-        memory.add3AddressCode(
+    public void endWhile() {
+        memory.addTripleAddressCode(
                 ss.pop().num,
                 Operation.JPF,
                 ss.pop(),
                 new Address(memory.getCurrentCodeBlockAddress() + 1, VarType.ADDRESS),
                 null);
-        memory.add3AddressCode(Operation.JP, ss.pop(), null, null);
+        memory.addTripleAddressCode(Operation.JP, ss.pop(), null, null);
     }
 
-    public void jpf_save() {
+    public void jpfSave() {
         Address save = new Address(memory.saveMemory(), VarType.ADDRESS);
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 ss.pop().num,
                 Operation.JPF,
                 ss.pop(),
@@ -365,7 +365,7 @@ public class CodeGenerator {
     }
 
     public void jpHere() {
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 ss.pop().num,
                 Operation.JP,
                 new Address(memory.getCurrentCodeBlockAddress(), VarType.ADDRESS),
@@ -374,7 +374,7 @@ public class CodeGenerator {
     }
 
     public void print() {
-        memory.add3AddressCode(Operation.PRINT, ss.pop(), null, null);
+        memory.addTripleAddressCode(Operation.PRINT, ss.pop(), null, null);
     }
 
     public void equal() {
@@ -384,18 +384,18 @@ public class CodeGenerator {
         if (s1.varType != s2.varType) {
             ErrorHandler.printError("The type of operands in equal operator is different");
         }
-        memory.add3AddressCode(Operation.EQ, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.EQ, s1, s2, temp);
         ss.push(temp);
     }
 
-    public void less_than() {
+    public void lessThan() {
         Address temp = new Address(memory.getTemp(), VarType.BOOL);
         Address s2 = ss.pop();
         Address s1 = ss.pop();
         if (s1.varType != VarType.INT || s2.varType != VarType.INT) {
             ErrorHandler.printError("The type of operands in less than operator is different");
         }
-        memory.add3AddressCode(Operation.LT, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.LT, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -406,7 +406,7 @@ public class CodeGenerator {
         if (s1.varType != VarType.BOOL || s2.varType != VarType.BOOL) {
             ErrorHandler.printError("In and operator the operands must be boolean");
         }
-        memory.add3AddressCode(Operation.AND, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.AND, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -417,7 +417,7 @@ public class CodeGenerator {
         if (s1.varType != VarType.BOOL) {
             ErrorHandler.printError("In not operator the operand must be boolean");
         }
-        memory.add3AddressCode(Operation.NOT, s1, s2, temp);
+        memory.addTripleAddressCode(Operation.NOT, s1, s2, temp);
         ss.push(temp);
     }
 
@@ -480,7 +480,7 @@ public class CodeGenerator {
         if (s.varType != temp) {
             ErrorHandler.printError("The type of method and return address was not match");
         }
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 Operation.ASSIGN,
                 s,
                 new Address(
@@ -488,7 +488,7 @@ public class CodeGenerator {
                         VarType.ADDRESS,
                         TypeAddress.INDIRECT),
                 null);
-        memory.add3AddressCode(
+        memory.addTripleAddressCode(
                 Operation.JP,
                 new Address(
                         symbolTable.getMethodCallerAddress(symbolStack.peek(), methodName),
@@ -516,8 +516,5 @@ public class CodeGenerator {
 
     public void lastTypeInt() {
         symbolTable.setLastType(SymbolType.INT);
-    }
-
-    public void main() {
     }
 }

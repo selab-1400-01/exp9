@@ -25,8 +25,8 @@ public class Rule {
         LHS = NonTerminal.valueOf(split[0]);
         RHS = new ArrayList<>();
         if (split.length > 1) {
-            String[] RHSs = split[1].split(" ");
-            for (String s : RHSs) {
+            String[] rhsList = split[1].split(" ");
+            for (String s : rhsList) {
                 try {
                     RHS.add(new GrammarSymbol(NonTerminal.valueOf(s)));
                 } catch (Exception e) {
