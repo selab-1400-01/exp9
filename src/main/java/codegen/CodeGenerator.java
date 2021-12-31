@@ -19,7 +19,6 @@ public class CodeGenerator {
 
     public CodeGenerator() {
         symbolTable = new SymbolTable(memory);
-        //TODO
     }
 
     public void printMemory() {
@@ -150,7 +149,6 @@ public class CodeGenerator {
 
     public void checkID() {
         symbolStack.pop();
-        //TODO : error
     }
 
     public void pid(Token next) {
@@ -198,7 +196,6 @@ public class CodeGenerator {
     }
 
     public void startCall() {
-        //TODO: method ok
         ss.pop();
         ss.pop();
         String methodName = symbolStack.pop();
@@ -209,7 +206,6 @@ public class CodeGenerator {
     }
 
     public void call() {
-        //TODO: method ok
         String methodName = callStack.pop();
         String className = callStack.pop();
         try {
@@ -244,12 +240,10 @@ public class CodeGenerator {
     }
 
     public void arg() {
-        //TODO: method ok
-
         String methodName = callStack.pop();
         try {
             Symbol s = symbolTable.getNextParam(callStack.peek(), methodName);
-            VarType t = getVarType(s)
+            VarType t = getVarType(s);
 
             Address param = ss.pop();
             if (param.varType != t) {
@@ -265,7 +259,6 @@ public class CodeGenerator {
     }
 
     public void assign() {
-
         Address s1 = ss.pop();
         Address s2 = ss.pop();
         if (s1.varType != s2.varType) {
@@ -438,8 +431,6 @@ public class CodeGenerator {
     }
 
     public void methodReturn() {
-        //TODO : call ok
-
         String methodName = symbolStack.pop();
         Address s = ss.pop();
         SymbolType t = symbolTable.getMethodReturnType(symbolStack.peek(), methodName);
@@ -471,7 +462,6 @@ public class CodeGenerator {
     }
 
     public void defParam() {
-        //TODO : call Ok
         ss.pop();
         String param = symbolStack.pop();
         String methodName = symbolStack.pop();

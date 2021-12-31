@@ -5,9 +5,6 @@ import scanner.token.Token;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mohammad hosein on 6/25/2015.
- */
 public class Rule {
     public Rule(String stringRule) {
         int index = stringRule.indexOf("#");

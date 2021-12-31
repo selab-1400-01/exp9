@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by mohammad hosein on 6/25/2015.
- */
 public class ParseTable {
     private List<Map<Token, Action>> actionTable;
     private List<Map<NonTerminal, Integer>> gotoTable;
