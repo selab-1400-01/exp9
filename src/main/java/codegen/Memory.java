@@ -7,23 +7,21 @@ public class Memory {
     private final List<TripleAddressCode> codeBlock;
     private int lastTempIndex;
     private int lastDataAddress;
-    private final int startTempMemoryAddress = 500;
-    private final int startDataMemoryAddress = 200;
-    private final int dataSize = 4;
-    private final int tempSize = 4;
 
     public Memory() {
         codeBlock = new ArrayList<>();
-        lastTempIndex = startTempMemoryAddress;
-        lastDataAddress = startDataMemoryAddress;
+        lastTempIndex = 500;
+        lastDataAddress = 200;
     }
 
     public int getTemp() {
+        int tempSize = 4;
         lastTempIndex += tempSize;
         return lastTempIndex - tempSize;
     }
 
     public int getDateAddress() {
+        int dataSize = 4;
         lastDataAddress += dataSize;
         return lastDataAddress - dataSize;
     }
@@ -59,7 +57,7 @@ class TripleAddressCode {
     private Operation operation;
     private Address Operand1;
     private Address Operand2;
-    public Address Operand3;
+    private Address Operand3;
 
     public TripleAddressCode() {
 
@@ -111,5 +109,13 @@ class TripleAddressCode {
 
     public void setOperand2(Address operand2) {
         Operand2 = operand2;
+    }
+
+    public Address getOperand3() {
+        return Operand3;
+    }
+
+    public void setOperand3(Address operand3) {
+        Operand3 = operand3;
     }
 }
