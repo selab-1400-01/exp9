@@ -11,11 +11,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class CodeGenerator {
-    private Memory memory = new Memory();
-    private Deque<Address> ss = new ArrayDeque<>();
-    private Deque<String> symbolStack = new ArrayDeque<>();
-    private Deque<String> callStack = new ArrayDeque<>();
-    private SymbolTable symbolTable;
+    private final Memory memory = new Memory();
+    private final Deque<Address> ss = new ArrayDeque<>();
+    private final Deque<String> symbolStack = new ArrayDeque<>();
+    private final Deque<String> callStack = new ArrayDeque<>();
+    private final SymbolTable symbolTable;
 
     public CodeGenerator() {
         symbolTable = new SymbolTable(memory);

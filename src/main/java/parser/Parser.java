@@ -17,11 +17,11 @@ import java.util.List;
 
 
 public class Parser {
-    private List<Rule> rules;
-    private Deque<Integer> parsStack;
+    private final List<Rule> rules;
+    private final Deque<Integer> parsStack;
     private ParseTable parseTable;
     private LexicalAnalyzer lexicalAnalyzer;
-    private CodeGenerator cg;
+    private final CodeGenerator cg;
 
     public Parser() {
         parsStack = new ArrayDeque<>();

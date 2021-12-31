@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Memory {
-    private List<TripleAddressCode> codeBlock;
+    private final List<TripleAddressCode> codeBlock;
     private int lastTempIndex;
     private int lastDataAddress;
     private final int startTempMemoryAddress = 500;
@@ -77,13 +77,13 @@ class TripleAddressCode {
         StringBuffer res = new StringBuffer("(");
         res.append(operation.toString()).append(",");
         if (Operand1 != null)
-            res.append(Operand1.toString());
+            res.append(Operand1);
         res.append(",");
         if (Operand2 != null)
-            res.append(Operand2.toString());
+            res.append(Operand2);
         res.append(",");
         if (Operand3 != null)
-            res.append(Operand3.toString());
+            res.append(Operand3);
         res.append(")");
 
         return res.toString();

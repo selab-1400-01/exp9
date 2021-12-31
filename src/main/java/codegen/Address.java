@@ -5,6 +5,7 @@ public class Address {
     public TypeAddress type;
     public VarType varType;
 
+
     public Address(int num, VarType varType, TypeAddress Type) {
         this.num = num;
         this.type = Type;
