@@ -2,8 +2,8 @@ package semantic.symbol;
 
 
 import codegen.Address;
+import codegen.ImmediateAddress;
 import codegen.Memory;
-import codegen.TypeAddress;
 import codegen.VarType;
 import errorhandling.ErrorHandler;
 
@@ -22,8 +22,8 @@ public class SymbolTable {
         mem = memory;
         klasses = new HashMap<>();
         keyWords = new HashMap<>();
-        keyWords.put("true", new Address(1, VarType.BOOL, TypeAddress.IMMEDIATE));
-        keyWords.put("false", new Address(0, VarType.BOOL, TypeAddress.IMMEDIATE));
+        keyWords.put("true", new ImmediateAddress(1, VarType.BOOL));
+        keyWords.put("false", new ImmediateAddress(0, VarType.BOOL));
     }
 
     public void setLastType(SymbolType type) {
